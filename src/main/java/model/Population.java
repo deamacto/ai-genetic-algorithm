@@ -56,21 +56,16 @@ public class Population {
         return new Population(secondGen, populationName);
     }
 
-    public static FactoryModel tournamentSelection(int n, Population population) {
-        HashSet<FactoryModel> chosenOnes = new HashSet<>();
+    public FactoryEfficiency tournamentSelection(int n, Population population) {
+        ArrayList<FactoryEfficiency> chosenOnes = new ArrayList<>();
+
         for(int i = 0; i < n; i++) {
-            chosenOnes.add(population.getFactories().get((int)((Math.random() * (population.getFactories().size())))));
+            chosenOnes.add(factories.getFactories().get((int)((Math.random() * (factories.getFactories().size())))));
         }
 
-        int bestEfficiency = Integer.MAX_VALUE;
-        FactoryModel best = null;
-        for(FactoryModel elem : chosenOnes) {
-            if(bestEfficiency > elem.factoryEfficiency(population.getRoutes())) {
-                best = elem;
-                bestEfficiency = elem.factoryEfficiency(population.getRoutes());
-            }
-        }
-        return best;
+        Factories factories = new Factories(chosenOnes);
+
+        return factories.findBestFactory();
     }
 
     public FactoryModel RouletteSelection() {
