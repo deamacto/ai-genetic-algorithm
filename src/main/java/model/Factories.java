@@ -16,6 +16,10 @@ public class Factories {
         }
     }
 
+    public Factories(ArrayList<FactoryEfficiency> factoryEfficiencies) {
+        this.factories = factoryEfficiencies;
+    }
+
     public ArrayList<FactoryEfficiency> getFactories() {
         return factories;
     }

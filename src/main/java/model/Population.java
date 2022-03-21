@@ -14,26 +14,31 @@ public class Population {
         this.populationName = populationName;
     }
 
-    public Population crossover(double p) {
-        ArrayList<FactoryModel> secondGen = new ArrayList<>();
+    private Population(ArrayList<FactoryEfficiency> factoryEfficiencies, String populationName) {
+        this.factories = new Factories(factoryEfficiencies);
+        this.populationName = populationName;
+    }
 
-        for(int i = 0; i < factories.size(); i++) {
+    public Population crossover(double p, String populationName) {
+        ArrayList<FactoryEfficiency> secondGen = new ArrayList<>();
+
+        for(int i = 0; i < factories.getFactories().size(); i++) {
             if(Math.random() < p) {
-                FactoryModel f1 = (FactoryModel) factories.get(i).clone();
-                FactoryModel f2 = (FactoryModel) factories.get(i+1).clone();
-                Integer[] swapSpace = f1.factory[0];
-                f1.factory[0] = f2.factory[0];
-                f2.factory[0] = swapSpace;
-                f1.factoryFix();
-                f2.factoryFix();
+                FactoryEfficiency f1 = (FactoryEfficiency) factories.getFactories().get(i).clone();
+                FactoryEfficiency f2 = (FactoryEfficiency) factories.getFactories().get(i+1).clone();
+                Integer[] swapSpace = f1.getFactory().factory[0];
+                f1.getFactory().factory[0] = f2.getFactory().factory[0];
+                f2.getFactory().factory[0] = swapSpace;
+                f1.getFactory().factoryFix();
+                f2.getFactory().factoryFix();
                 secondGen.add(f1);
                 secondGen.add(f2);
                 i++;
             } else {
-                secondGen.add((FactoryModel) factories.get(i).clone());
+                secondGen.add(factories.getFactories().get(i).clone());
             }
         }
-        return  secondGen;
+        return  new Population(secondGen, populationName);
     }
 
     public ArrayList<FactoryModel> mutation(double p, int offset) throws CloneNotSupportedException {

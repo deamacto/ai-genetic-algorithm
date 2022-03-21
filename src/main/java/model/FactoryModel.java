@@ -132,7 +132,7 @@ public class FactoryModel implements Cloneable{
     }
 
     @Override
-    protected Object clone() {
+    protected FactoryModel clone() {
         Integer[][] newFactory = new Integer[dt.factoryHeight][dt.factoryWidth];
         for(int i = 0; i < factory.length; i++) {
             System.arraycopy(factory[i], 0, newFactory[i], 0, factory[0].length);

@@ -21,4 +21,9 @@ public class FactoryEfficiency {
     public int getFactoryEfficiency() {
         return factoryEfficiency;
     }
+
+    @Override
+    protected FactoryEfficiency clone() {
+        return new FactoryEfficiency(this.factory.clone());
+    }
 }
