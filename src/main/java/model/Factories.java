@@ -3,6 +3,7 @@ package model;
 import dataConfig.DataType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Factories {
     private ArrayList<FactoryEfficiency> factories = new ArrayList<>();
@@ -40,5 +41,17 @@ public class Factories {
             }
         }
         return factoryEfficiency;
+    }
+
+    public int sumWeight() {
+        int sum = 0;
+        for(FactoryEfficiency factoryEfficiency : factories) {
+            sum += factoryEfficiency.weight;
+        }
+        return sum;
+    }
+
+    public void sortFactoriesByWeight() {
+        factories.sort(FactoryEfficiency.weightComparator);
     }
 }

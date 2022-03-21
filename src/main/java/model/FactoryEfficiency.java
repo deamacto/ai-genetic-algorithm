@@ -1,8 +1,11 @@
 package model;
 
+import java.util.Comparator;
+
 public class FactoryEfficiency {
     private final FactoryModel factory;
     private final int factoryEfficiency;
+    double weight = 0;
 
     public FactoryEfficiency(FactoryModel factory) {
         this.factory = factory;
@@ -26,4 +29,6 @@ public class FactoryEfficiency {
     protected FactoryEfficiency clone() {
         return new FactoryEfficiency(this.factory.clone());
     }
+
+    public static Comparator<FactoryEfficiency> weightComparator = (f1, f2) -> (Double.compare(f1.weight, f2.weight));
 }

@@ -68,50 +68,30 @@ public class Population {
         return factories.findBestFactory();
     }
 
-    public FactoryModel RouletteSelection() {
-        ArrayList<Double> weight = new ArrayList<>();
-        int sum = efficiencySum();
-        for(FactoryModel factory : factories) {
-            weight.add(1 - (factory.factoryEfficiency() / (double)sum));
-        }
-        double sum2 = castedEfficiencySum(weight);
+    public FactoryEfficiency RouletteSelection() {
+        int sum = factories.sumEfficiency();
 
+        for(FactoryEfficiency factory : factories.getFactories()) {
+           factory.weight = (1 - (factory.getFactoryEfficiency() / (double)sum));
+        }
+
+        double sum2 = factories.sumWeight();
         double weightSum = 0.0;
-        for(int i = 0; i < weight.size(); i++) {
-            weightSum += weight.get(1)/sum2;
-            weight.set(i, weightSum);
+        for(FactoryEfficiency factory : factories.getFactories()) {
+            weightSum += factory.weight / sum2;
+            factory.weight = weightSum;
         }
 
         double luckyOne = Math.random();
-        HashMap<Double, FactoryModel> factoriesWeight = weightedFactories(weight, population);
+        factories.sortFactoriesByWeight();
+        FactoryEfficiency theChosenOne = new FactoryEfficiency();
 
-        FactoryModel theChosenOne = null;
-
-        for(Double fw : weight) {
-            if(fw >= luckyOne) {
-                theChosenOne = factoriesWeight.get(fw);
+        for(FactoryEfficiency factoryEfficiency : factories.getFactories()) {
+            if(luckyOne >= factoryEfficiency.weight) {
+                theChosenOne = factoryEfficiency;
             }
         }
-        assert theChosenOne != null;
-        System.out.println(theChosenOne.factoryEfficiency(population.getRoutes()));
+        System.out.println(theChosenOne.getFactoryEfficiency());
         return theChosenOne;
     }
-
-
-    static double castedEfficiencySum(ArrayList<Double> list) {
-        double sum = 0.0;
-        for(Double value : list) {
-            sum += value;
-        }
-        return sum;
-    }
-
-    static HashMap<Double, FactoryModel> weightedFactories(ArrayList<Double> weight, Population population) {
-        HashMap<Double, FactoryModel> factoriesWeight = new HashMap<>();
-        for(int i = 0; i < population.getFactories().size(); i++) {
-            factoriesWeight.put(weight.get(i), population.getFactories().get(i));
-        }
-        return factoriesWeight;
-    }
-
 }
