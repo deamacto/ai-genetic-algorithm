@@ -41,19 +41,19 @@ public class Population {
         return  new Population(secondGen, populationName);
     }
 
-    public ArrayList<FactoryModel> mutation(double p, int offset) throws CloneNotSupportedException {
-        ArrayList<FactoryModel> secondGen = new ArrayList<>();
+    public Population mutation(double p, int offset, String populationName) {
+        ArrayList<FactoryEfficiency> secondGen = new ArrayList<>();
 
-        for(int i = 0; i < factories.size(); i++) {
+        for(int i = 0; i < factories.getFactories().size(); i++) {
             if (Math.random() < p) {
-                FactoryModel f1 = (FactoryModel) factories.get(i).clone();
-                f1.mutate(offset);
+                FactoryEfficiency f1 = factories.getFactories().get(i).clone();
+                f1.getFactory().mutate(offset);
                 secondGen.add(f1);
             } else {
-                secondGen.add((FactoryModel) factories.get(i).clone());
+                secondGen.add(factories.getFactories().get(i).clone());
             }
         }
-        return secondGen;
+        return new Population(secondGen, populationName);
     }
 
     public static FactoryModel tournamentSelection(int n, Population population) {
