@@ -43,10 +43,10 @@ public class Factories {
         return factoryEfficiency;
     }
 
-    public int sumWeight() {
-        int sum = 0;
-        for(FactoryEfficiency factoryEfficiency : factories) {
-            sum += factoryEfficiency.weight;
+    public double sumWeight() {
+        double sum = 0.0;
+        for(FactoryEfficiency factory : factories) {
+            sum += factory.weight;
         }
         return sum;
     }

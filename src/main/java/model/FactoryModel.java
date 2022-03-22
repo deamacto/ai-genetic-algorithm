@@ -79,9 +79,34 @@ public class FactoryModel implements Cloneable{
         return sum;
     }
 
-    //TODO implement factory fixing method
     public void factoryFix() {
+        HashSet<Integer> machineNrs = new HashSet<>();
+        for(int i = 0; i < machines; i++) {
+            machineNrs.add(i);
+        }
 
+        ArrayList<Integer> duplicates = new ArrayList<>();
+
+        for(int i = 0; i < factory.length; i ++) {
+            for(int j = 0; j < factory[0].length; j++) {
+                if(machineNrs.contains(factory[i][j])) {
+                    machineNrs.remove(factory[i][j]);
+                } else {
+                    duplicates.add(factory[i][j]);
+                }
+            }
+        }
+
+        machineNrs.addAll(duplicates);
+        ArrayList<Integer> unusedMachines = new ArrayList<>(machineNrs);
+
+        for(int i = 0; i < factory.length; i ++) {
+            for (int j = 0; j < factory[0].length; j++) {
+                if(duplicates.contains(factory[i][j])) {
+                    factory[i][j] = unusedMachines.remove((int)(Math.random() * unusedMachines.size()));
+                }
+            }
+        }
     }
 
     public void mutate(int offset) {

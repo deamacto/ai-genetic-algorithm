@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         DataType dt = new DataType(Difficulty.EASY);
 
-
+        Population population = new Population(dt, 5, "test");
+        population.RouletteSelection();
     }
 }

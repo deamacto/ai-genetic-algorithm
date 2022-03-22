@@ -6,8 +6,8 @@ import dataConfig.DataType;
 
 public class Population {
 
-    private Factories factories;
-    private String populationName;
+    private final Factories factories;
+    private final String populationName;
 
     public Population(DataType dt, int n, String populationName) {
         this.factories = new Factories(dt, n);
@@ -56,7 +56,7 @@ public class Population {
         return new Population(secondGen, populationName);
     }
 
-    public FactoryEfficiency tournamentSelection(int n, Population population) {
+    public FactoryEfficiency tournamentSelection(int n) {
         ArrayList<FactoryEfficiency> chosenOnes = new ArrayList<>();
 
         for(int i = 0; i < n; i++) {
@@ -87,7 +87,7 @@ public class Population {
         FactoryEfficiency theChosenOne = new FactoryEfficiency();
 
         for(FactoryEfficiency factoryEfficiency : factories.getFactories()) {
-            if(luckyOne >= factoryEfficiency.weight) {
+            if(luckyOne <= factoryEfficiency.weight) {
                 theChosenOne = factoryEfficiency;
             }
         }
