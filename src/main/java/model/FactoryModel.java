@@ -22,10 +22,14 @@ public class FactoryModel implements Cloneable{
         factory = new Integer[dt.factoryHeight][dt.factoryWidth];
     }
 
-    private FactoryModel(Integer[][] factory, DataType dt) {
+    public FactoryModel(Integer[][] factory, DataType dt) {
         this.factory = factory;
         this.dt = dt;
         this.machines = dt.machinesAmount;
+    }
+
+    public Integer[][] getFactory() {
+        return factory;
     }
 
     // fills "factory" with ints representing machines numbers
@@ -50,10 +54,10 @@ public class FactoryModel implements Cloneable{
 
     //
     public int machinesDistance(int machineA, int machineB) {
-        int machineAcordx = 0;
-        int machineAcordy = 0;
-        int machineBcordx = 0;
-        int machineBcordy = 0;
+        int machineAcordx = -1;
+        int machineAcordy = -1;
+        int machineBcordx = -1;
+        int machineBcordy = -1;
 
         for(int i = 0; i < factory.length; i++) {
             for(int j = 0; j <  factory[0].length; j++) {
@@ -65,6 +69,10 @@ public class FactoryModel implements Cloneable{
                     machineBcordx = j;
                 }
             }
+        }
+
+        if((machineAcordx == -1 && machineAcordy == -1) || (machineBcordx == -1 && machineBcordy == -1)) {
+            return 0;
         }
 
         return Math.abs(machineAcordx - machineBcordx) + Math.abs(machineAcordy - machineBcordy);
