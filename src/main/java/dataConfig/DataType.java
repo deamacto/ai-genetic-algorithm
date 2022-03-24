@@ -26,6 +26,12 @@ public class DataType {
             factoryWidth = 6;
             factoryHeight = 5;
             machinesAmount = 24;
+        } else if(difficulty == Difficulty.TEST) {
+            flowFile = "data/easy_flow.json";
+            costFile = "data/easy_cost.json";
+            factoryWidth = 2;
+            factoryHeight = 2;
+            machinesAmount = 4;
         }
     }
 }
