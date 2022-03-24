@@ -12,9 +12,9 @@ public class FactoryEfficiency {
         this.factoryEfficiency = factory.factoryEfficiency();
     }
 
-    public FactoryEfficiency() {
+    public FactoryEfficiency(int efficiency) {
         this.factory = null;
-        this.factoryEfficiency = Integer.MAX_VALUE;
+        this.factoryEfficiency = efficiency;
     }
 
     public FactoryModel getFactory() {

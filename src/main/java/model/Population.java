@@ -84,7 +84,7 @@ public class Population {
 
         double luckyOne = Math.random();
         factories.sortFactoriesByWeight();
-        FactoryEfficiency theChosenOne = new FactoryEfficiency();
+        FactoryEfficiency theChosenOne = new FactoryEfficiency(Integer.MAX_VALUE);
 
         for(FactoryEfficiency factoryEfficiency : factories.getFactories()) {
             if(luckyOne <= factoryEfficiency.weight) {

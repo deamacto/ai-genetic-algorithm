@@ -34,7 +34,7 @@ public class Factories {
     }
 
     public FactoryEfficiency findBestFactory() {
-        FactoryEfficiency factoryEfficiency = new FactoryEfficiency();
+        FactoryEfficiency factoryEfficiency = new FactoryEfficiency(Integer.MAX_VALUE);
         for(FactoryEfficiency fe : factories) {
             if(fe.getFactoryEfficiency() < factoryEfficiency.getFactoryEfficiency()) {
                 factoryEfficiency = fe;
