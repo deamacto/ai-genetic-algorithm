@@ -53,12 +53,18 @@ public class Factories {
         return factoryEfficiency;
     }
 
-    public double sumWeight() {
-        double sum = 0.0;
+    public double sumBestAndWorstWeight() {
+        double bestWeight = Double.MAX_VALUE;
+        double worstWeight = Double.MIN_VALUE;
         for(FactoryEfficiency factory : factories) {
-            sum += factory.weight;
+            if(factory.weight < bestWeight) {
+                bestWeight = factory.weight;
+            }
+            if(factory.weight > worstWeight) {
+                worstWeight = factory.weight;
+            }
         }
-        return sum;
+        return bestWeight + worstWeight;
     }
 
     public void sortFactoriesByWeight() {

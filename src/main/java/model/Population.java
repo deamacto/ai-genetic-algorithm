@@ -72,17 +72,17 @@ public class Population {
         int sum = factories.sumEfficiencySquared();
 
         for(FactoryEfficiency factory : factories.getFactories()) {
-           factory.weight = (1 - (factory.getFactoryEfficiency() / (double)sum));
+           factory.weight = factory.getFactoryEfficiency() * factory.getFactoryEfficiency() / (double)sum;
         }
 
-        double sum2 = factories.sumWeight();
+        double sum2 = factories.sumBestAndWorstWeight();
         double weightSum = 0.0;
         for(FactoryEfficiency factory : factories.getFactories()) {
-            weightSum += factory.weight / sum2;
+            weightSum += sum2 - factory.weight;
             factory.weight = weightSum;
         }
 
-        double luckyOne = Math.random();
+        double luckyOne = Math.random() * weightSum;
         factories.sortFactoriesByWeight();
         FactoryEfficiency theChosenOne = new FactoryEfficiency(Integer.MAX_VALUE);
 
