@@ -43,6 +43,16 @@ public class Factories {
         return factoryEfficiency;
     }
 
+    public FactoryEfficiency findWorstFactory() {
+        FactoryEfficiency factoryEfficiency = new FactoryEfficiency(Integer.MIN_VALUE);
+        for(FactoryEfficiency fe : factories) {
+            if(fe.getFactoryEfficiency() > factoryEfficiency.getFactoryEfficiency()) {
+                factoryEfficiency = fe;
+            }
+        }
+        return factoryEfficiency;
+    }
+
     public double sumWeight() {
         double sum = 0.0;
         for(FactoryEfficiency factory : factories) {
