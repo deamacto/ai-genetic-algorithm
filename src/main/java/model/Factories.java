@@ -25,10 +25,10 @@ public class Factories {
         return factories;
     }
 
-    public int sumEfficiency() {
+    public int sumEfficiencySquared() {
         int sum = 0;
         for(FactoryEfficiency factoryEfficiency : factories) {
-            sum += factoryEfficiency.getFactoryEfficiency();
+            sum += factoryEfficiency.getFactoryEfficiency() * factoryEfficiency.getFactoryEfficiency();
         }
         return sum;
     }

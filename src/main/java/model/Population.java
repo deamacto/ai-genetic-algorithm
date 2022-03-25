@@ -69,7 +69,7 @@ public class Population {
     }
 
     public FactoryEfficiency RouletteSelection() {
-        int sum = factories.sumEfficiency();
+        int sum = factories.sumEfficiencySquared();
 
         for(FactoryEfficiency factory : factories.getFactories()) {
            factory.weight = (1 - (factory.getFactoryEfficiency() / (double)sum));
