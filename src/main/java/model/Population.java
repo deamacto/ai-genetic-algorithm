@@ -14,7 +14,7 @@ public class Population {
         this.populationName = populationName;
     }
 
-    private Population(ArrayList<FactoryEfficiency> factoryEfficiencies, String populationName) {
+    public Population(ArrayList<FactoryEfficiency> factoryEfficiencies, String populationName) {
         this.factories = new Factories(factoryEfficiencies);
         this.populationName = populationName;
     }
