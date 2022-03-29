@@ -21,6 +21,18 @@ public class Factories {
         this.factories = factoryEfficiencies;
     }
 
+    public int sum() {
+        int sum = 0;
+        for(FactoryEfficiency factoryEfficiency : factories) {
+            sum += factoryEfficiency.getFactoryEfficiency();
+        }
+        return sum;
+    }
+
+    public double avg() {
+        return sum()/(double)factories.size();
+    }
+
     public ArrayList<FactoryEfficiency> getFactories() {
         return factories;
     }
