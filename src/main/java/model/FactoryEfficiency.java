@@ -26,7 +26,7 @@ public class FactoryEfficiency {
     }
 
     @Override
-    protected FactoryEfficiency clone() {
+    public FactoryEfficiency clone() {
         return new FactoryEfficiency(this.factory.clone());
     }
 
