@@ -9,6 +9,9 @@ public class Main {
     public static void main(String[] args) {
         DataType dt = new DataType(Difficulty.EASY);
 
+        Statistics tournamentStats = TournamentPopulation(dt);
+        System.out.println(tournamentStats);
+
     }
 
     public static Statistics TournamentPopulation(DataType dataType) {
@@ -24,19 +27,18 @@ public class Main {
             ArrayList<FactoryEfficiency> newPopulation = new ArrayList<>();
 
             for(int j = 0; j < population.getFactories().getFactories().size(); j++) {
-                newPopulation.add(population.tournamentSelection(20));
+                newPopulation.add(population.tournamentSelection(5).clone());
             }
 
             population = new Population(newPopulation, populationName);
 
-            population.crossover(0.3, populationName);
-            population.mutation(0.2, 1, populationName);
+            population = population.crossover(0.6, populationName);
+            population = population.mutation(0.5, 1, populationName);
         }
 
         Factories bests = new Factories(bestFactories);
         Factories worst = new Factories(worstFactories);
 
-        Statistics statistics = new Statistics(bests.findBestFactory().getFactoryEfficiency(), worst.findWorstFactory().getFactoryEfficiency(), bests.avg(), bests.stdDeviation());
-        return statistics;
+        return new Statistics(bests.findBestFactory().getFactoryEfficiency(), worst.findWorstFactory().getFactoryEfficiency(), bests.avg(), bests.stdDeviation());
     }
 }
