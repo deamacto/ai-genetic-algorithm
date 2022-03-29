@@ -19,6 +19,10 @@ public class Population {
         this.populationName = populationName;
     }
 
+    public Factories getFactories() {
+        return factories;
+    }
+
     public Population crossover(double p, String populationName) {
         ArrayList<FactoryEfficiency> secondGen = new ArrayList<>();
 
