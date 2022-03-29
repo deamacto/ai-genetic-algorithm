@@ -1,15 +1,31 @@
 package model;
 
 public class Statistics {
-    public int best;
-    public int worst;
-    public double avg;
-    public double std;
+    int best;
+    int worst;
+    double avg;
+    double std;
 
-    public Statistics() {
-        best = Integer.MAX_VALUE;
-        worst = Integer.MIN_VALUE;
-        avg = 0.0;
-        std = 0.0;
+    public Statistics(int best, int worst, double avg, double std) {
+        this.best = best;
+        this.worst = worst;
+        this.avg = avg;
+        this.std = std;
+    }
+
+    public int getBest() {
+        return best;
+    }
+
+    public int getWorst() {
+        return worst;
+    }
+
+    public double getAvg() {
+        return avg;
+    }
+
+    public double getStd() {
+        return std;
     }
 }
