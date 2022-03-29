@@ -28,4 +28,9 @@ public class Statistics {
     public double getStd() {
         return std;
     }
+
+    @Override
+    public String toString() {
+        return "Best: " + best + " Worst: " + worst + " Avg: " + avg + " Std: " + std;
+    }
 }
