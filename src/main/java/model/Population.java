@@ -25,7 +25,7 @@ public class Population {
         for(int i = 0; i < factories.getFactories().size(); i++) {
             if(Math.random() < p) {
                 FactoryEfficiency f1 = factories.getFactories().get(i).clone();
-                FactoryEfficiency f2 = factories.getFactories().get(i+1).clone();
+                FactoryEfficiency f2 = factories.getFactories().get((i+1) % factories.getFactories().size()).clone();
                 Integer[] swapSpace = f1.getFactory().factory[0];
                 f1.getFactory().factory[0] = f2.getFactory().factory[0];
                 f2.getFactory().factory[0] = swapSpace;
