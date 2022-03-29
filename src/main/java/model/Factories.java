@@ -33,6 +33,16 @@ public class Factories {
         return sum()/(double)factories.size();
     }
 
+    public double stdDeviation() {
+        double sum = 0;
+        double avg = avg();
+        for(FactoryEfficiency fe : factories) {
+            sum += Math.pow(fe.getFactoryEfficiency() -avg, 2);
+        }
+
+        return Math.sqrt(sum / factories.size());
+    }
+
     public ArrayList<FactoryEfficiency> getFactories() {
         return factories;
     }
