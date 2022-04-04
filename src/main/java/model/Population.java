@@ -35,8 +35,8 @@ public class Population {
                 f2.getFactory().factory[0] = swapSpace;
                 f1.getFactory().factoryFix();
                 f2.getFactory().factoryFix();
-                f1.revaluateEfficiency();
-                f2.revaluateEfficiency();
+                f1.reevaluateEfficiency();
+                f2.reevaluateEfficiency();
                 secondGen.add(f1);
                 secondGen.add(f2);
                 i++;
@@ -52,7 +52,7 @@ public class Population {
             if (Math.random() < p) {
                 FactoryEfficiency f1 = factories.getFactories().get(i);
                 f1.getFactory().mutate(offset);
-                f1.revaluateEfficiency();
+                f1.reevaluateEfficiency();
             }
         }
     }

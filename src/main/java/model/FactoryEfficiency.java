@@ -25,7 +25,7 @@ public class FactoryEfficiency {
         return factoryEfficiency;
     }
 
-    public void revaluateEfficiency() {
+    public void reevaluateEfficiency() {
         this.factoryEfficiency = factory.factoryEfficiency();
     }
 
