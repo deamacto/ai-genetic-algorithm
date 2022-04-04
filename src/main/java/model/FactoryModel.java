@@ -38,7 +38,7 @@ public class FactoryModel implements Cloneable{
         for(int i = 0; i < machines; i++) {
             int randomInt = (int) ((Math.random() * (freeSpots.size())));
             int spot = freeSpots.get(randomInt);
-            factory[spot / factory.length][spot % factory[0].length] = i;
+            factory[spot / factory[0].length][spot % factory[0].length] = i;
             freeSpots.remove(randomInt);
         }
     }
@@ -61,12 +61,14 @@ public class FactoryModel implements Cloneable{
 
         for(int i = 0; i < factory.length; i++) {
             for(int j = 0; j <  factory[0].length; j++) {
-                if(factory[i][j] == machineA) {
-                    machineAcordy = i;
-                    machineAcordx = j;
-                } else if(factory[i][j] == machineB) {
-                    machineBcordy = i;
-                    machineBcordx = j;
+                if(factory[i][j] != null) {
+                    if (factory[i][j] == machineA) {
+                        machineAcordy = i;
+                        machineAcordx = j;
+                    } else if (factory[i][j] == machineB) {
+                        machineBcordy = i;
+                        machineBcordx = j;
+                    }
                 }
             }
         }
@@ -99,7 +101,7 @@ public class FactoryModel implements Cloneable{
             for(int j = 0; j < factory[0].length; j++) {
                 if(machineNrs.contains(factory[i][j])) {
                     machineNrs.remove(factory[i][j]);
-                } else {
+                } else if(factory[i][j] != null){
                     duplicates.add(factory[i][j]);
                 }
             }
@@ -107,13 +109,24 @@ public class FactoryModel implements Cloneable{
 
         machineNrs.addAll(duplicates);
         ArrayList<Integer> unusedMachines = new ArrayList<>(machineNrs);
+        ArrayList<Integer> spots = new ArrayList<>();
 
         for(int i = 0; i < factory.length; i ++) {
             for (int j = 0; j < factory[0].length; j++) {
                 if(duplicates.contains(factory[i][j])) {
-                    factory[i][j] = unusedMachines.remove((int)(Math.random() * unusedMachines.size()));
+                    factory[i][j] = null;
+                    spots.add(i * factory[0].length + j);
+                } else if(factory[i][j] == null) {
+                    spots.add(i * factory[0].length + j);
                 }
             }
+        }
+
+        for(int i = 0; i < unusedMachines.size(); i++) {
+            int randomInt = (int) ((Math.random() * (spots.size())));
+            int spot = spots.get(randomInt);
+            factory[spot / factory[0].length][spot % factory[0].length] = unusedMachines.remove(0);
+            spots.remove(randomInt);
         }
     }
 
