@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public class FactoryEfficiency {
     private final FactoryModel factory;
-    private final int factoryEfficiency;
+    private int factoryEfficiency;
     public double weight = 0;
 
     public FactoryEfficiency(FactoryModel factory) {
@@ -23,6 +23,10 @@ public class FactoryEfficiency {
 
     public int getFactoryEfficiency() {
         return factoryEfficiency;
+    }
+
+    public void revaluateEfficiency() {
+        this.factoryEfficiency = factory.factoryEfficiency();
     }
 
     @Override
