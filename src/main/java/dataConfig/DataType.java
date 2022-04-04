@@ -23,8 +23,8 @@ public class DataType {
         } else if(difficulty == Difficulty.HARD) {
             flowFile = "data/hard_flow.json";
             costFile = "data/hard_cost.json";
-            factoryWidth = 6;
-            factoryHeight = 5;
+            factoryWidth = 5;
+            factoryHeight = 6;
             machinesAmount = 24;
         } else if(difficulty == Difficulty.TEST) {
             flowFile = "data/easy_flow.json";
