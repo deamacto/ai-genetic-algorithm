@@ -3,7 +3,6 @@ package model;
 import dataConfig.DataType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Factories {
     private ArrayList<FactoryEfficiency> factories = new ArrayList<>();

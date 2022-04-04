@@ -1,13 +1,12 @@
 import dataConfig.DataType;
 import dataConfig.Difficulty;
-import input.DataReader;
 import model.*;
 
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        DataType dt = new DataType(Difficulty.EASY);
+        DataType dt = new DataType(Difficulty.FLAT);
 
         Statistics tournamentStats = TournamentPopulation(dt);
         System.out.println(tournamentStats);
@@ -33,7 +32,7 @@ public class Main {
             population = new Population(newPopulation, populationName);
 
             population = population.crossover(0.6, populationName);
-            population = population.mutation(0.5, 1, populationName);
+            population.mutation(0.5, 1);
         }
 
         Factories bests = new Factories(bestFactories);

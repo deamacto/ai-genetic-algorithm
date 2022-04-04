@@ -1,15 +1,11 @@
 package model;
 
 import dataConfig.DataType;
-import dataConfig.Difficulty;
 import input.DataReader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class FactoryModel implements Cloneable{
     Integer[][] factory;
@@ -142,19 +138,19 @@ public class FactoryModel implements Cloneable{
 
     @Override
     public String toString() {
-        String f = "FactoryModel \n";
+        StringBuilder f = new StringBuilder("FactoryModel \n");
         for (Integer[] integers : factory) {
-            f += "[";
+            f.append("[");
             for (int j = 0; j < factory[0].length; j++) {
                 if (integers[j] == null) {
-                    f += " _ ";
+                    f.append(" _ ");
                 } else {
-                    f += " " + integers[j] + " ";
+                    f.append(" ").append(integers[j]).append(" ");
                 }
             }
-            f += "]\n";
+            f.append("]\n");
         }
-        return f;
+        return f.toString();
     }
 
     @Override
