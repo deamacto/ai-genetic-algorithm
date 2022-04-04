@@ -35,6 +35,8 @@ public class Population {
                 f2.getFactory().factory[0] = swapSpace;
                 f1.getFactory().factoryFix();
                 f2.getFactory().factoryFix();
+                f1.revaluateEfficiency();
+                f2.revaluateEfficiency();
                 secondGen.add(f1);
                 secondGen.add(f2);
                 i++;
@@ -45,19 +47,14 @@ public class Population {
         return  new Population(secondGen, populationName);
     }
 
-    public Population mutation(double p, int offset, String populationName) {
-        ArrayList<FactoryEfficiency> secondGen = new ArrayList<>();
-
+    public void mutation(double p, int offset) {
         for(int i = 0; i < factories.getFactories().size(); i++) {
             if (Math.random() < p) {
-                FactoryEfficiency f1 = factories.getFactories().get(i).clone();
+                FactoryEfficiency f1 = factories.getFactories().get(i);
                 f1.getFactory().mutate(offset);
-                secondGen.add(f1);
-            } else {
-                secondGen.add(factories.getFactories().get(i).clone());
+                f1.revaluateEfficiency();
             }
         }
-        return new Population(secondGen, populationName);
     }
 
     public FactoryEfficiency tournamentSelection(int n) {
