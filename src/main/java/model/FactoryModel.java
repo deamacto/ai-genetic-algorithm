@@ -118,7 +118,9 @@ public class FactoryModel implements Cloneable{
             }
         }
 
-        for(int i = 0; i < unusedMachines.size(); i++) {
+        int unusedMachinesSize = unusedMachines.size();
+
+        for(int i = 0; i < unusedMachinesSize; i++) {
             int randomInt = (int) ((Math.random() * (spots.size())));
             int spot = spots.get(randomInt);
             factory[spot / factory[0].length][spot % factory[0].length] = unusedMachines.remove(0);
