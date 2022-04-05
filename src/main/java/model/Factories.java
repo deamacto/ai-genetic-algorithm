@@ -46,10 +46,10 @@ public class Factories {
         return factories;
     }
 
-    public int sumEfficiencySquared() {
-        int sum = 0;
+    public long sumEfficiencySquared() {
+        long sum = 0;
         for(FactoryEfficiency factoryEfficiency : factories) {
-            sum += factoryEfficiency.getFactoryEfficiency() * factoryEfficiency.getFactoryEfficiency();
+            sum += (long) factoryEfficiency.getFactoryEfficiency() * factoryEfficiency.getFactoryEfficiency();
         }
         return sum;
     }
