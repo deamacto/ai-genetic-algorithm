@@ -69,11 +69,11 @@ public class Population {
         return factories.findBestFactory();
     }
 
-    public FactoryEfficiency RouletteSelection() {
-        int sum = factories.sumEfficiencySquared();
+    public FactoryEfficiency rouletteSelection() {
+        long sum = factories.sumEfficiencySquared();
 
         for(FactoryEfficiency factory : factories.getFactories()) {
-           factory.weight = factory.getFactoryEfficiency() * factory.getFactoryEfficiency() / (double)sum;
+           factory.weight = (long) factory.getFactoryEfficiency() * (long) factory.getFactoryEfficiency() / (double)sum;
         }
 
         double sum2 = factories.sumBestAndWorstWeight();
@@ -90,9 +90,9 @@ public class Population {
         for(FactoryEfficiency factoryEfficiency : factories.getFactories()) {
             if(luckyOne <= factoryEfficiency.weight) {
                 theChosenOne = factoryEfficiency;
+                break;
             }
         }
-        System.out.println(theChosenOne.getFactoryEfficiency());
         return theChosenOne;
     }
 }
