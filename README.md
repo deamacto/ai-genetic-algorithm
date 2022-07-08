@@ -19,4 +19,4 @@ The cost and flow values are read from the data files, distance is calculated us
 For the generation selection either the tournament or roulette algorithm is used. Some specimens are then mutated or crossed over, depending on hyperparameters.
 
 ### **Results**
-Redults can be viewed in wyniki.pdf file
+Results can be viewed in wyniki.pdf file
